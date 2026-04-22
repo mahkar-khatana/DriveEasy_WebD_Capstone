@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveEasy — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+    </div>
+    Drive<span>Easy</span>
+  </div>
+  <div class="nav-tabs">
+    <a class="nav-tab active" href="dashboard.html">Dashboard</a>
+    <a class="nav-tab" href="booking.html">Book a Car</a>
+    <a class="nav-tab" href="history.html">My Bookings</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-badge" id="navBadge">0 Bookings</div>
+  </div>
+</nav>
+
+<!-- DASHBOARD VIEW -->
+<div class="dash-wrap">
+
+  <!-- Hero -->
+  <div class="dash-hero">
+    <div class="hero-text">
+      <h1>Rent. Drive.<br><span>Experience Freedom.</span></h1>
+      <p>Premium cars at unbeatable prices. Pick up anywhere, drop anywhere. Fully insured, zero hassle.</p>
+      <div class="hero-cta">
+        <a href="booking.html" class="btn-primary">Book Now</a>
+        <button class="btn-outline">View Fleet</button>
+      </div>
+    </div>
+    <div class="hero-car">
+      <img src="https://imgd.aeplcdn.com/1056x594/n/cw/ec/44709/fortuner-exterior-right-front-three-quarter-19.jpeg" alt="Fortuner" style="border-radius:12px;width:100%;max-width:360px">
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-grid">
+    <div class="stat-card" style="--accent-color:#00d4b4">
+      <div class="stat-icon" style="background:rgba(0,212,180,0.1)">🚗</div>
+      <div class="stat-num" id="statCars">4</div>
+      <div class="stat-label">Cars Available</div>
+      <span class="stat-change up">↑ All ready</span>
+    </div>
+    <div class="stat-card" style="--accent-color:#4d9fff">
+      <div class="stat-icon" style="background:rgba(77,159,255,0.1)">📋</div>
+      <div class="stat-num" id="statBookings">0</div>
+      <div class="stat-label">Total Bookings</div>
+      <span class="stat-change up" id="statBookChange">—</span>
+    </div>
+    <div class="stat-card" style="--accent-color:#f5c842">
+      <div class="stat-icon" style="background:rgba(245,200,66,0.1)">₹</div>
+      <div class="stat-num" id="statRevenue">₹0</div>
+      <div class="stat-label">Total Revenue</div>
+      <span class="stat-change up" id="statRevChange">—</span>
+    </div>
+    <div class="stat-card" style="--accent-color:#ff4d6d">
+      <div class="stat-icon" style="background:rgba(255,77,109,0.1)">📅</div>
+      <div class="stat-num" id="statDays">0</div>
+      <div class="stat-label">Total Days Rented</div>
+      <span class="stat-change up" id="statDayChange">—</span>
+    </div>
+  </div>
+
+  <div class="dash-cols">
+    <!-- LEFT: Fleet + Recent -->
+    <div>
+      <div class="section-hd">
+        <h2>Our Fleet</h2>
+        <a href="booking.html">Book a car →</a>
+      </div>
+      <div class="fleet-list" id="fleetList"></div>
+
+      <div style="margin-top:24px">
+        <div class="section-hd">
+          <h2>Recent Bookings</h2>
+          <a href="history.html">View all →</a>
+        </div>
+        <div class="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th>Guest</th><th>Vehicle</th><th>Days</th><th>Amount</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="recentTable">
+              <tr><td colspan="5" style="text-align:center;color:var(--text3);padding:24px">No bookings yet</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Chart + Activity -->
+    <div>
+      <div class="chart-card" style="margin-bottom:14px">
+        <div class="section-hd" style="margin-bottom:0">
+          <h2>Revenue by Car</h2>
+        </div>
+        <div class="mini-bars" id="revenueChart"></div>
+        <div style="display:flex;gap:5px;margin-top:8px" id="chartLabels"></div>
+      </div>
+
+      <div class="feed-card">
+        <div class="section-hd" style="margin-bottom:10px"><h2>Activity</h2></div>
+        <div id="activityFeed">
+          <div style="font-size:12px;color:var(--text3);text-align:center;padding:16px 0">No activity yet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon ok" id="toastIcon">✓</div>
+  <span id="toastMsg"></span>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/dashboard.js"></script>
+<script>
+  buildFleet();
+  updateDashboard();
+  updateNavBadge();
+</script>
+</body>
+</html>

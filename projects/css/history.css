@@ -1,0 +1,41 @@
+/* ===================== HISTORY PAGE ===================== */
+.history-wrap { padding: 32px; max-width: 1100px; margin: 0 auto; }
+
+/* FILTER PILLS */
+.hist-filters { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+.filter-btn {
+  padding: 7px 16px; border-radius: 20px;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  border: 1px solid var(--border2); background: transparent;
+  color: var(--text2); font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+}
+.filter-btn.active,
+.filter-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
+
+/* BOOKING CARDS */
+.hist-cards { display: flex; flex-direction: column; gap: 12px; }
+.hist-card  {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 0; overflow: hidden;
+  display: flex; transition: border-color 0.2s;
+}
+.hist-card:hover { border-color: var(--border2); }
+.hist-card-img   { width: 160px; flex-shrink: 0; overflow: hidden; }
+.hist-card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.hist-card-body  { flex: 1; padding: 16px 20px; display: flex; gap: 20px; align-items: center; }
+.hist-car-name   { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.hist-meta       { font-size: 12px; color: var(--text2); }
+.hist-details    { display: flex; gap: 20px; flex: 1; }
+.hist-detail     { font-size: 12px; }
+.hist-detail .hd-lbl { color: var(--text3); margin-bottom: 2px; }
+.hist-detail .hd-val { font-weight: 500; }
+
+.hist-card-right { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; padding: 16px 20px; }
+.hist-amount     { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--accent); }
+.hist-sub-amt    { font-size: 10px; color: var(--text3); text-align: right; }
+
+/* EMPTY STATE */
+.empty-hist { text-align: center; padding: 60px 20px; color: var(--text2); }
+.empty-hist svg { width: 48px; height: 48px; fill: var(--text3); margin-bottom: 16px; display: block; margin-left: auto; margin-right: auto; }
+.empty-hist p   { font-size: 14px; }

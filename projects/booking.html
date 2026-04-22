@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DriveEasy — Book a Car</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="nav">
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+    </div>
+    Drive<span>Easy</span>
+  </div>
+  <div class="nav-tabs">
+    <a class="nav-tab" href="dashboard.html">Dashboard</a>
+    <a class="nav-tab active" href="booking.html">Book a Car</a>
+    <a class="nav-tab" href="history.html">My Bookings</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-badge" id="navBadge">0 Bookings</div>
+  </div>
+</nav>
+
+<!-- BOOKING VIEW -->
+<div class="booking-wrap">
+  <div class="booking-left">
+
+    <!-- Step 1: Pick Car -->
+    <div class="step-head"><div class="step-num">1</div><h2>Choose Your Vehicle</h2></div>
+    <div class="car-picker" id="carPicker"></div>
+
+    <!-- Step 2: Dates -->
+    <div class="step-head"><div class="step-num">2</div><h2>Select Rental Period</h2></div>
+    <div class="form-card">
+      <div class="form-row">
+        <div class="field">
+          <label>Pickup Date</label>
+          <input type="date" id="bStart" oninput="recalc()">
+        </div>
+        <div class="field">
+          <label>Return Date</label>
+          <input type="date" id="bEnd" oninput="recalc()">
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Guest Info -->
+    <div class="step-head"><div class="step-num">3</div><h2>Your Details</h2></div>
+    <div class="form-card">
+      <div class="form-row">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="bName" placeholder="Rajesh Kumar">
+        </div>
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="tel" id="bPhone" placeholder="+91 98765 43210">
+        </div>
+      </div>
+      <div class="field">
+        <label>Email Address</label>
+        <input type="email" id="bEmail" placeholder="rajesh@example.com">
+      </div>
+      <div class="form-row" style="margin-top:4px">
+        <div class="field">
+          <label>City / Pickup Location</label>
+          <select id="bCity">
+            <option value="">Select city</option>
+            <option>Delhi</option><option>Mumbai</option><option>Bangalore</option>
+            <option>Hyderabad</option><option>Rohtak</option><option>Chandigarh</option>
+            <option>Jaipur</option><option>Pune</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>License Number</label>
+          <input type="text" id="bLicense" placeholder="DL-0420110012345">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Sidebar Summary -->
+  <div class="booking-sidebar">
+    <div class="summary-card">
+      <div class="summary-car-img">
+        <img id="sumImg" src="" alt="">
+        <div class="img-overlay"></div>
+        <div class="summary-car-info">
+          <div class="car-name-lrg" id="sumName">—</div>
+          <div class="car-cat" id="sumCat">Select a vehicle</div>
+        </div>
+      </div>
+      <div class="summary-body">
+        <div class="price-display">
+          <div class="big-price" id="sumTotal">₹0</div>
+          <div class="price-note" id="sumNote">Select dates to calculate</div>
+        </div>
+        <div class="summary-lines">
+          <div class="sum-line"><span class="lbl">Vehicle</span><span class="val" id="sl-car">—</span></div>
+          <div class="sum-line"><span class="lbl">Rate per day</span><span class="val" id="sl-rate">—</span></div>
+          <div class="sum-line"><span class="lbl">Duration</span><span class="val" id="sl-days">—</span></div>
+          <div class="sum-line"><span class="lbl">Pickup date</span><span class="val" id="sl-start">—</span></div>
+          <div class="sum-line"><span class="lbl">Return date</span><span class="val" id="sl-end">—</span></div>
+          <div class="sum-line total-line"><span class="lbl">Total</span><span class="val" id="sl-total">₹0</span></div>
+        </div>
+        <button class="btn-confirm" onclick="confirmBooking()">Confirm Reservation</button>
+        <div class="guarantee">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          Secure &amp; insured booking
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon ok" id="toastIcon">✓</div>
+  <span id="toastMsg"></span>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/booking.js"></script>
+<script>
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('bStart').min = today;
+  document.getElementById('bEnd').min   = today;
+
+  // Pre-select car from URL param, e.g. booking.html?car=2
+  const params = new URLSearchParams(location.search);
+  if (params.get('car')) selectedCarId = parseInt(params.get('car'));
+
+  buildCarPicker();
+  updateSummaryPanel();
+  updateNavBadge();
+</script>
+</body>
+</html>

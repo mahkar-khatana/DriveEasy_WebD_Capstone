@@ -1,0 +1,95 @@
+/* ===================== BOOKING PAGE ===================== */
+.booking-wrap {
+  padding: 32px; max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 24px; align-items: start;
+}
+
+/* STEP HEADERS */
+.step-head { display: flex; align-items: center; gap: 8px; margin-bottom: 22px; }
+.step-num  {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent); color: #0a0e14;
+  font-size: 11px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; flex-shrink: 0;
+}
+.step-head h2 { font-size: 17px; font-weight: 700; }
+
+/* CAR PICKER GRID */
+.car-picker { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 28px; }
+.car-tile {
+  border: 1.5px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; cursor: pointer; transition: all 0.2s; background: var(--bg2);
+}
+.car-tile:hover    { border-color: var(--border2); }
+.car-tile.selected { border-color: var(--accent); background: rgba(0,212,180,0.04); }
+.car-tile-img { height: 130px; overflow: hidden; position: relative; }
+.car-tile-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.car-tile:hover .car-tile-img img { transform: scale(1.04); }
+.car-tile-img .overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%); }
+.car-tile-body   { padding: 12px 14px; }
+.car-tile-name   { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.car-tile-sub    { font-size: 11px; color: var(--text2); margin-bottom: 8px; }
+.car-tile-footer { display: flex; align-items: center; justify-content: space-between; }
+.car-tile-price  { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent); }
+.car-tile-price small { font-size: 10px; font-weight: 400; color: var(--text3); font-family: 'DM Sans', sans-serif; }
+.selected-check {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent); display: flex; align-items: center; justify-content: center;
+}
+.selected-check svg { width: 10px; height: 10px; fill: #0a0e14; }
+
+/* FORM CARDS */
+.form-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; margin-bottom: 16px; }
+.form-row      { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-row.full { grid-template-columns: 1fr; }
+.field         { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+.field:last-child { margin-bottom: 0; }
+.field label   { font-size: 11px; font-weight: 500; color: var(--text2); letter-spacing: 0.3px; }
+.field input,
+.field select  {
+  height: 40px; background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--radius-sm); padding: 0 12px;
+  font-size: 13px; color: var(--text); font-family: 'DM Sans', sans-serif;
+  outline: none; transition: border 0.2s;
+}
+.field input:focus,
+.field select:focus { border-color: var(--accent); }
+.field input.err    { border-color: var(--red); }
+.field select option { background: var(--bg3); }
+
+/* BOOKING SUMMARY SIDEBAR */
+.summary-card    { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; position: sticky; top: 80px; }
+.summary-car-img { height: 180px; overflow: hidden; position: relative; }
+.summary-car-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.summary-car-img:hover img { transform: scale(1.03); }
+.summary-car-img .img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,14,20,0.9) 0%, transparent 60%); }
+.summary-car-info { position: absolute; bottom: 14px; left: 14px; }
+.summary-car-info .car-name-lrg { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; }
+.summary-car-info .car-cat      { font-size: 11px; color: rgba(255,255,255,0.6); }
+
+.summary-body   { padding: 18px 20px; }
+.price-display  { text-align: center; padding: 16px 0; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.price-display .big-price  { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800; color: var(--accent); }
+.price-display .price-note { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+.summary-lines { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+.sum-line      { display: flex; justify-content: space-between; font-size: 13px; }
+.sum-line .lbl { color: var(--text2); }
+.sum-line .val { font-weight: 500; }
+.sum-line.total-line { border-top: 1px solid var(--border); padding-top: 10px; margin-top: 4px; font-size: 14px; }
+.sum-line.total-line .val { color: var(--accent); font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
+
+.btn-confirm {
+  width: 100%; height: 46px; background: var(--accent); color: #0a0e14;
+  border: none; border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 800; cursor: pointer;
+  font-family: 'Syne', sans-serif; letter-spacing: 0.3px;
+  transition: all 0.2s; margin-bottom: 10px;
+}
+.btn-confirm:hover  { background: var(--accent2); transform: translateY(-1px); }
+.btn-confirm:active { transform: scale(0.98); }
+
+.guarantee { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: var(--text3); }
+.guarantee svg { width: 12px; height: 12px; fill: var(--text3); }
