@@ -23,7 +23,14 @@ function toast(msg, type = 'ok') {
   setTimeout(() => t.classList.remove('show'), 3500);
 }
 
-function updateNavBadge() {
-  const c = getBookings().length;
-  document.getElementById('navBadge').textContent = c + ' Booking' + (c !== 1 ? 's' : '');
+async function updateNavBadge() {
+  try {
+    const res = await fetch('http://127.0.0.1:5000/bookings');
+    const data = await res.json();
+
+    document.getElementById('navBadge').textContent =
+      data.length + ' Booking' + (data.length !== 1 ? 's' : '');
+  } catch (e) {
+    console.error("Nav badge error:", e);
+  }
 }
